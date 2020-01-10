@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="SchoolProject.View.PlayerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SchoolProject.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Background="Black">
+
+            <Image x:Name="headerImage"
+                   Source="https://steemitimages.com/0x0/http://7wallpapers.net/wp-content/uploads/2_Dota2-Rubick.jpg"
+                   Stretch="Fill"/>
+
+            <TextBlock Text="Dota2 Tracker!"
+                       FontSize="30"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="Red"/>
+
+            <TextBlock Text="Get information about heroes,player,stats and much more!" FontSize="10"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       Margin="0 60 0 0"/>
+        </Grid>
+        <Grid Grid.Row="1" Background="Red">
+            <TextBlock Text="player info here"
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <TextBlock Text="match history here"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Page>
