@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolProject.DataProvider;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,7 +27,26 @@ namespace SchoolProject.View
         {
             this.InitializeComponent();
         }
+        public void FocusEvent(object sender, RoutedEventArgs e)
+        {
+            SearchBar.Text = string.Empty;
+            SearchBar.GotFocus -= FocusEvent;
+        }
 
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string inputValue = SearchBar.Text;
+            Dota2DataProvider qdp = new Dota2DataProvider();
 
+            if (inputValue.Length == 8)
+            {
+                var PlayerInfo = qdp.GetPlayerInfo(inputValue);
+
+            }
+            if (inputValue.Length == 10)
+            {
+                var MatchInfo = qdp.GetMatchInfo(inputValue);
+            }
+        }
     }
 }
