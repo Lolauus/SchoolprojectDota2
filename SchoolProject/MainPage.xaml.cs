@@ -1,4 +1,6 @@
 ﻿using SchoolProject.DataProvider;
+using SchoolProject.Models;
+using SchoolProject.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +9,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -34,30 +38,55 @@ namespace SchoolProject
             SearchBar.Text = string.Empty;
             SearchBar.GotFocus -= FocusEvent;
         }
-
-        //private async void getMatches()
-        //{
-        //    int playerId = 0; 
-        //    Dota2DataProvider qdp = new Dota2DataProvider();
-        //    var categories = await qdp.GetPlayerInfo(playerId);
-        //}
-
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            string inputValue = SearchBar.Text;
+            var ValueFromButtonClick = SearchBar.Text;
+            string ValueFromEnterButton = SearchBar.Text.Replace(($"{SearchBar.Text}"),($"{sender}"));
             Dota2DataProvider qdp = new Dota2DataProvider();
+   
+           
+            if (ValueFromButtonClick.Length == 8 || ValueFromEnterButton.Length == 8)
+            {
+                
+                _ = qdp.GetPlayerInfo(ValueFromButtonClick);
+                Frame.Navigate(typeof(PlayerPage));
+            }
+            if (ValueFromButtonClick.Length == 10 || ValueFromEnterButton.Length == 10)
+            {
+                _ = qdp.GetMatchInfo(ValueFromButtonClick);
+                Frame.Navigate(typeof(PlayerPage));
+            }
+            else
+            {
+                string text = "You need to read the information regarding how to properly enter your ID";
+                ShowInfo.Text = text;
 
-            if (inputValue.Length == 8)
-            {
-                 var PlayerInfo = qdp.GetPlayerInfo(inputValue);
-               
             }
-            if (inputValue.Length == 10)
-            {
-                var MatchInfo = qdp.GetMatchInfo(inputValue);
-            }
-            ShowInfo.Text = inputValue;
+
+
         }
 
+        private void Header_click(object sender, RoutedEventArgs e)
+        {
+
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private static bool IsEnterKeyPressed()
+        {
+            var enterState = CoreWindow.GetForCurrentThread().GetKeyState(VirtualKey.Enter);
+            return (enterState & CoreVirtualKeyStates.Down) == CoreVirtualKeyStates.Down;
+        }
+        private void SearchBarGrid_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (IsEnterKeyPressed())
+            {
+                MainPage test = new MainPage();
+                string ValueFromEnterButton = SearchBar.Text;
+                test.SearchBtn_Click(ValueFromEnterButton, e);
+                
+            }
+            
+        }
     }
 }

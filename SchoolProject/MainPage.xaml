@@ -25,11 +25,17 @@
                    Source="https://steemitimages.com/0x0/http://7wallpapers.net/wp-content/uploads/2_Dota2-Rubick.jpg"
                    Stretch="Fill"/>
 
-            <TextBlock Text="Dota2 Tracker!"
-                       FontSize="30"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Foreground="Red"/>
+            <Button Content="Dota2 Tracker"
+                   Foreground="Red"
+                    FontSize="40"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Click="Header_click"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Padding="-4"
+                    AllowFocusOnInteraction="False"/>
 
 
             <TextBlock Text="Get information about heroes,player,stats and much more!" FontSize="10"
@@ -54,6 +60,7 @@
                   Height="40"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Center"
+                  KeyDown="SearchBarGrid_KeyDown"
                  >
 
                 <TextBox x:Name="SearchBar"
@@ -66,21 +73,23 @@
                        Height="40"
                        GotFocus="FocusEvent"/>
             </Grid>
-
             <Button x:Name="SearchBtn"
                     RelativePanel.RightOf="SearchBarGrid"
                     FontSize="30"
                     Background="Green"
-                    Click="SearchBtn_Click">
+                    Click="SearchBtn_Click"
+                    >
 
                 <FontIcon FontFamily="Segoe MDL2 Assets"
                           Glyph="&#xE71E;"
                           FontSize="27"/>
             </Button>
         </RelativePanel>
-        <TextBlock Grid.Row="1" Text="To search, please enter your player ID. We only allow 32bits id:s, not 64bits."
-                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+        <TextBlock x:Name="TextInfo" Grid.Row="1"
+                   Text="To search, please enter your player ID. We only allow 32bits id:s. To find your 32bit string, please visit https://steamid.xyz/ and enter your 64 bit string "
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Margin=" 0 50 0 0"/>
         <TextBlock Grid.Row="1" x:Name="ShowInfo"
                    VerticalAlignment="Center"/>
     </Grid>

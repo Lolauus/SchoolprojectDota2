@@ -1,4 +1,5 @@
 ﻿using SchoolProject.DataProvider;
+using SchoolProject.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,30 +24,25 @@ namespace SchoolProject.View
     /// </summary>
     public sealed partial class PlayerPage : Page
     {
+
         public PlayerPage()
         {
             this.InitializeComponent();
+            APIHelper.InitilizeClient();
         }
-        public void FocusEvent(object sender, RoutedEventArgs e)
+        private void Playerinfo()
         {
-            SearchBar.Text = string.Empty;
-            SearchBar.GotFocus -= FocusEvent;
+            Player qdp = new Player();
+            PlayerUserName.Text = qdp.UserName;
+            PlayerMatchesPlayed.Text = qdp.MatchesPlayed.ToString();
+            PlayerRank.Text = qdp.rank;
+            PlayerRecord.Text = qdp.Record;
+
         }
-
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string inputValue = SearchBar.Text;
-            Dota2DataProvider qdp = new Dota2DataProvider();
-
-            if (inputValue.Length == 8)
-            {
-                var PlayerInfo = qdp.GetPlayerInfo(inputValue);
-
-            }
-            if (inputValue.Length == 10)
-            {
-                var MatchInfo = qdp.GetMatchInfo(inputValue);
-            }
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
+
 }

@@ -11,10 +11,12 @@ namespace SchoolProject.Models
     {
         [JsonProperty("id")]
         public string Id { get; set; }
-        [JsonProperty("personaname")]
+        [JsonProperty("profile")]
         public string UserName { get; set; }
         public string Record { get; set; }
         public int MatchesPlayed { get; set; }
+        [JsonProperty("competitive_rank,solo_competitive_rank")]
+        public string rank { get; set; }
 
     }
 }

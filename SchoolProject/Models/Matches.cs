@@ -18,6 +18,8 @@ namespace SchoolProject.Models
         [JsonProperty("radiant_win")]
         public Boolean Result { get; set; }
         public string Duration { get; set; }
+        [JsonProperty("isRadiant")]
+        public bool team { get; set; }
 
     }
 }
