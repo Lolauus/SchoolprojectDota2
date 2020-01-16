@@ -38,23 +38,18 @@ namespace SchoolProject
             SearchBar.Text = string.Empty;
             SearchBar.GotFocus -= FocusEvent;
         }
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        private async void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             var ValueFromButtonClick = SearchBar.Text;
-            string ValueFromEnterButton = SearchBar.Text.Replace(($"{SearchBar.Text}"),($"{sender}"));
             Dota2DataProvider qdp = new Dota2DataProvider();
    
            
-            if (ValueFromButtonClick.Length == 8 || ValueFromEnterButton.Length == 8)
+            if (ValueFromButtonClick.Length == 8)
             {
                 
-                _ = qdp.GetPlayerInfo(ValueFromButtonClick);
-                Frame.Navigate(typeof(PlayerPage));
-            }
-            if (ValueFromButtonClick.Length == 10 || ValueFromEnterButton.Length == 10)
-            {
-                _ = qdp.GetMatchInfo(ValueFromButtonClick);
-                Frame.Navigate(typeof(PlayerPage));
+                var hej =  await qdp.GetPlayerInfo(ValueFromButtonClick);
+                var hej2 = await qdp.GetWinRatio(ValueFromButtonClick);
+                Frame.Navigate(typeof(PlayerPage),hej);                
             }
             else
             {
@@ -62,8 +57,7 @@ namespace SchoolProject
                 ShowInfo.Text = text;
 
             }
-
-
+            
         }
 
         private void Header_click(object sender, RoutedEventArgs e)
@@ -72,21 +66,5 @@ namespace SchoolProject
             this.Frame.Navigate(typeof(MainPage));
         }
 
-        private static bool IsEnterKeyPressed()
-        {
-            var enterState = CoreWindow.GetForCurrentThread().GetKeyState(VirtualKey.Enter);
-            return (enterState & CoreVirtualKeyStates.Down) == CoreVirtualKeyStates.Down;
-        }
-        private void SearchBarGrid_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (IsEnterKeyPressed())
-            {
-                MainPage test = new MainPage();
-                string ValueFromEnterButton = SearchBar.Text;
-                test.SearchBtn_Click(ValueFromEnterButton, e);
-                
-            }
-            
-        }
     }
 }

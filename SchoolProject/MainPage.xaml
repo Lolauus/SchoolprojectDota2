@@ -60,7 +60,6 @@
                   Height="40"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Center"
-                  KeyDown="SearchBarGrid_KeyDown"
                  >
 
                 <TextBox x:Name="SearchBar"

@@ -8,9 +8,8 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="Black">
+    <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
             <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -23,12 +22,7 @@
             <Image x:Name="headerImage"
                    Source="https://steemitimages.com/0x0/http://7wallpapers.net/wp-content/uploads/2_Dota2-Rubick.jpg"
                    Stretch="Fill"/>
-            
-                <!--<TextBlock Text="Dota2 Tracker!"
-                       FontSize="30"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Foreground="Red"/>-->
+
             <Button Content="Dota2 Tracker"
                    Foreground="Red"
                     FontSize="40"
@@ -51,19 +45,29 @@
                        TextAlignment="Center"
                        Margin="0 60 0 0"/>
         </Grid>
-        <StackPanel Grid.Row="1" Background="Red" >
-            
-            <TextBlock x:Name="PlayerUserName" Text="player username here" />
-            <TextBlock x:Name="PlayerRecord" Text="player Record here"/>
-            <TextBlock x:Name="PlayerMatchesPlayed" Text="player MatchesPlayed here"/>
-            <TextBlock x:Name="PlayerRank" Text="player Rank here" />
-            
-        </StackPanel>
-
-        <Grid Grid.Row="3">
-            <TextBlock Text="match history here"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
-        </Grid>
+        <GridView  ItemsSource="{x:Bind semti}" Grid.Row="1" HorizontalAlignment="Center">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel 
+                        Width="150"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        Padding="10"
+                        Margin="10"
+                        Background="DarkSlateGray"
+                        Height="100"
+                        CornerRadius="15">
+                        <TextBlock Text="{Binding competitive_rank }"
+                           Foreground="Orange" FontSize="16"/>
+                        <TextBlock Text="{Binding profile.personaname}"
+                           Foreground="Orange" FontSize="16"/>
+                        <TextBlock Text="{Binding solo_competitive_rank}"
+                           Foreground="Orange" FontSize="16"/>
+                        <TextBlock Text="{Binding value}"
+                           Foreground="DarkOrange" FontSize="24"/>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </Page>

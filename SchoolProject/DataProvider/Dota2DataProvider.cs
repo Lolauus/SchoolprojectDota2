@@ -8,51 +8,45 @@ namespace SchoolProject.DataProvider
 {
     class Dota2DataProvider
     {
-        public async Task<List<Player>> GetPlayerInfo(string playerId)
+        private Rootobject rootobjects;
+
+        public async Task<Rootobject> GetPlayerInfo(string playerId)
         {
             string URL = ($"https://api.opendota.com/api/players/{playerId}");
-
-            List<Player> playerList = new List<Player>();
-            Player rootobjects = new Player();
+            Rootobject RootObjects = new Rootobject();
             using (HttpResponseMessage response = await APIHelper.ApiClient.GetAsync(URL))
             {
                 if (response.IsSuccessStatusCode)
                 {
+
                     var result = response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<Player>(result.Result);
+                    var data = JsonConvert.DeserializeObject<Rootobject>(result.Result);
+                    RootObjects = data;
+                   await GetWinRatio(playerId);
                 }
             }
-             return playerList;
+            return RootObjects;
 
         }
 
-        public async Task<List<Matches>> GetMatchInfo(string MatchId)
+        public async Task<Rootobject> GetWinRatio(string playerId)
         {
-            string uri = ($"https://api.opendota.com/api/matches/{MatchId}");
-            List<Matches> matchlist = new List<Matches>();
-            Matches rootobjects = new Matches();
-            using (HttpResponseMessage response = await APIHelper.ApiClient.GetAsync(uri))
+
+            string WlUrl = ($"https://api.opendota.com/api/players/{playerId}/wl");
+            Rootobject RootObjects = new Rootobject();
+            using (HttpResponseMessage response = await APIHelper.ApiClient.GetAsync(WlUrl))
             {
                 if (response.IsSuccessStatusCode)
                 {
+                    await APIHelper.ApiClient.GetAsync(WlUrl);
                     var result = response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<Matches>(result.Result);
-                    rootobjects = data;
-                    if (rootobjects.Result)
-                    {
-                        //Textbox som säger att dire vann
-
-                    }
-                    else
-                    {
-                        //textbox som säger att radiant vann
-                    }
-
+                    var data = JsonConvert.DeserializeObject<Rootobject>(result.Result);
+                    RootObjects = data;
                 }
-                
             }
-            return matchlist;
+            return RootObjects;
 
         }
     }
-}
+ }
+
