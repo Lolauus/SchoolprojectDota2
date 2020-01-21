@@ -44,12 +44,11 @@ namespace SchoolProject
             Dota2DataProvider qdp = new Dota2DataProvider();
    
            
-            if (ValueFromButtonClick.Length == 8)
+            if (ValueFromButtonClick.Length == 9)
             {
                 
                 var hej =  await qdp.GetPlayerInfo(ValueFromButtonClick);
-                var hej2 = await qdp.GetWinRatio(ValueFromButtonClick);
-                Frame.Navigate(typeof(PlayerPage),hej);                
+                Frame.Navigate(typeof(View.MainPage), hej);                
             }
             else
             {

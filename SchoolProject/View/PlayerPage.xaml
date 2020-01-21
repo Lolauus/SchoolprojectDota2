@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="SchoolProject.View.PlayerPage"
+    x:Class="SchoolProject.View.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SchoolProject.DataProvider"
@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="White">
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
@@ -38,36 +38,61 @@
                            HorizontalAlignment="Right">
 
             </RelativePanel>
-            
-            <TextBlock Text="Get information about heroes,player,stats and much more!" FontSize="10"
+
+            <TextBlock Text="Get information about players" FontSize="10"
                        Foreground="White"
                        VerticalAlignment="Center"
                        TextAlignment="Center"
                        Margin="0 60 0 0"/>
         </Grid>
-        <GridView  ItemsSource="{x:Bind semti}" Grid.Row="1" HorizontalAlignment="Center">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel 
-                        Width="150"
-                        BorderBrush="Black"
-                        BorderThickness="1"
-                        Padding="10"
-                        Margin="10"
-                        Background="DarkSlateGray"
-                        Height="100"
-                        CornerRadius="15">
-                        <TextBlock Text="{Binding competitive_rank }"
-                           Foreground="Orange" FontSize="16"/>
-                        <TextBlock Text="{Binding profile.personaname}"
-                           Foreground="Orange" FontSize="16"/>
-                        <TextBlock Text="{Binding solo_competitive_rank}"
-                           Foreground="Orange" FontSize="16"/>
-                        <TextBlock Text="{Binding value}"
-                           Foreground="DarkOrange" FontSize="24"/>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
+
+
+
+        <GridView Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Transparent">
+            <StackPanel 
+                Width="650"
+                Padding="10"
+                Margin="10"
+                Background="DarkSlateGray"
+                Height="500"
+                CornerRadius="20"
+                BorderBrush="Transparent"
+                BorderThickness="0">
+                <Image x:Name="PlayerAvatar"
+                           HorizontalAlignment="Center"
+                           Margin=" 0 0 0 10"
+                       Source="rootobject.profile.avatarfull"
+                       Height="64"
+                       Width="64"/>
+                <TextBlock x:Name="PlayerUserName"
+                           Foreground="Orange"
+                           FontSize="30"
+                           HorizontalAlignment="Center"
+                           Margin=" 0 0 0 10"/>
+                <TextBlock x:Name="PlayerSteamId"
+                           Foreground="Black"
+                           FontSize="15"
+                           HorizontalAlignment="Center"
+                           Margin=" 0 0 0 10"
+                           />
+                <TextBlock x:Name="PlayerAccountId"
+                           Foreground="DarkOrange"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           Margin=" 0 0 0 10"/>
+                <TextBlock x:Name="PlayerRank"
+                           Foreground="DarkOrange" 
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           Margin=" 0 0 0 10"/>
+                <TextBlock x:Name="PlayerMatchesPlayed"
+                           Foreground="DarkOrange"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           Margin=" 0 0 0 10"/>
+            </StackPanel>
+
         </GridView>
     </Grid>
+        
 </Page>

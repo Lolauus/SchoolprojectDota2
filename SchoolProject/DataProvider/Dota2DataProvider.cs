@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using SchoolProject.Models;
+using SchoolProject.View;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace SchoolProject.DataProvider
 {
@@ -20,33 +22,24 @@ namespace SchoolProject.DataProvider
                 {
 
                     var result = response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<Rootobject>(result.Result);
-                    RootObjects = data;
-                   await GetWinRatio(playerId);
+                    if (result.Result != null)
+                    {
+                        var data = JsonConvert.DeserializeObject<Rootobject>(result.Result);
+                        RootObjects = data;
+
+                    }
+                    else
+                    {
+                        // hitta ett sätt att presentera datan även om vissa värden är null.
+                    }
+
                 }
+
             }
             return RootObjects;
 
         }
 
-        public async Task<Rootobject> GetWinRatio(string playerId)
-        {
-
-            string WlUrl = ($"https://api.opendota.com/api/players/{playerId}/wl");
-            Rootobject RootObjects = new Rootobject();
-            using (HttpResponseMessage response = await APIHelper.ApiClient.GetAsync(WlUrl))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    await APIHelper.ApiClient.GetAsync(WlUrl);
-                    var result = response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<Rootobject>(result.Result);
-                    RootObjects = data;
-                }
-            }
-            return RootObjects;
-
-        }
     }
  }
 

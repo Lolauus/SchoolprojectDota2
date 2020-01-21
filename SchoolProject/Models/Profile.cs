@@ -15,6 +15,7 @@ namespace SchoolProject.Models
         public bool plus { get; set; }
         public int cheese { get; set; }
         public string steamid { get; set; }
+        public string avatarmedium { get; set; }
         public string profileurl { get; set; }
         public DateTime last_login { get; set; }
         public string loccountrycode { get; set; }

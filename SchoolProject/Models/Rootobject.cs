@@ -15,7 +15,5 @@ namespace SchoolProject.Models
         public int competitive_rank { get; set; }
         public object leaderboard_rank { get; set; }
         public MmrEstimate mmr_estimate { get; set; }
-        public int win { get; set; }
-        public int lose { get; set; }
     }
 }
