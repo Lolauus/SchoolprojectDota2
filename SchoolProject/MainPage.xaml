@@ -70,7 +70,8 @@
                        Text="Search for players here"
                        Width="400"
                        Height="40"
-                       GotFocus="FocusEvent"/>
+                       GotFocus="FocusEvent"
+                       KeyDown="EnterClick"/>
             </Grid>
             <Button x:Name="SearchBtn"
                     RelativePanel.RightOf="SearchBarGrid"

@@ -30,7 +30,7 @@ namespace SchoolProject
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             APIHelper.InitilizeClient();
         }
         public void FocusEvent(object sender, RoutedEventArgs e)
@@ -44,11 +44,11 @@ namespace SchoolProject
             Dota2DataProvider qdp = new Dota2DataProvider();
    
            
-            if (ValueFromButtonClick.Length == 9)
+            if (ValueFromButtonClick.Length < 10)
             {
                 
                 var hej =  await qdp.GetPlayerInfo(ValueFromButtonClick);
-                Frame.Navigate(typeof(View.MainPage), hej);                
+                Frame.Navigate(typeof(View.PlayerPage), hej);                
             }
             else
             {
@@ -65,5 +65,12 @@ namespace SchoolProject
             this.Frame.Navigate(typeof(MainPage));
         }
 
+        private void EnterClick(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                SearchBtn_Click(sender, e);
+            }
+        }
     }
 }

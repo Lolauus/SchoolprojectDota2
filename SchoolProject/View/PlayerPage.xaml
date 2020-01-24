@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="SchoolProject.View.MainPage"
+    x:Class="SchoolProject.View.PlayerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SchoolProject.DataProvider"
@@ -28,7 +28,7 @@
                     FontSize="40"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Click="Button_Click"
+                    Click="Header_click"
                     Background="Transparent"
                     BorderBrush="Transparent"
                     BorderThickness="0"
@@ -61,17 +61,17 @@
                 <Image x:Name="PlayerAvatar"
                            HorizontalAlignment="Center"
                            Margin=" 0 0 0 10"
-                       Source="rootobject.profile.avatarfull"
-                       Height="64"
-                       Width="64"/>
+                           Source="rootobject.profile.avatarfull"
+                           Height="64"
+                           Width="64"/>
                 <TextBlock x:Name="PlayerUserName"
                            Foreground="Orange"
                            FontSize="30"
                            HorizontalAlignment="Center"
                            Margin=" 0 0 0 10"/>
                 <TextBlock x:Name="PlayerSteamId"
-                           Foreground="Black"
-                           FontSize="15"
+                           Foreground="Orange"
+                           FontSize="20"
                            HorizontalAlignment="Center"
                            Margin=" 0 0 0 10"
                            />

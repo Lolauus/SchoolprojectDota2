@@ -25,34 +25,39 @@ namespace SchoolProject.View
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     
-    public sealed partial class MainPage : Page
+    public sealed partial class PlayerPage : Page
     {
-        public ObservableCollection<Rootobject> semti;
-
-        public MainPage()
+        public PlayerPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             APIHelper.InitilizeClient();
-            semti = new ObservableCollection<Rootobject>();
 
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            Rootobject rootobject = (Rootobject)e.Parameter;
-            Image img = new Image();
-            img.Source = new BitmapImage(new Uri(rootobject.profile.avatarmedium));
-            PlayerUserName.Text = rootobject.profile.personaname;
-            PlayerSteamId.Text = ($"Steam Profile: {rootobject.profile.profileurl}");
-            PlayerAccountId.Text = ($"Your Account ID: {rootobject.profile.account_id}");
-            PlayerRank.Text = ($"Team MMR: {rootobject.competitive_rank}") + ($" Solo MMR: {rootobject.solo_competitive_rank}");
-            PlayerMatchesPlayed.Text =   ($"Estimated Rating: {rootobject.mmr_estimate.estimate.ToString()}");
-            PlayerAvatar.Source = img.Source;
+            protected override void OnNavigatedTo(NavigationEventArgs e)
+            {
+
+                Rootobject rootobject = (Rootobject)e.Parameter;
+                if (rootobject != null)
+                {
+                    Image img = new Image();
+                    img.Source = new BitmapImage(new Uri(rootobject.profile.avatarmedium));
+                    PlayerUserName.Text = rootobject.profile.personaname;
+                    PlayerSteamId.Text = ($"Steam Profile: {rootobject.profile.profileurl}");
+                    PlayerAccountId.Text = ($"Your Account ID: {rootobject.profile.account_id}");
+                    PlayerRank.Text = ($"Team MMR: {rootobject.competitive_rank}\n") + ($" Solo MMR: {rootobject.solo_competitive_rank}");
+                    PlayerMatchesPlayed.Text =   ($"Estimated Rating: {rootobject.mmr_estimate.estimate.ToString()}");
+                    PlayerAvatar.Source = img.Source;
+                }
+                else
+                {
+                    Frame.Navigate(typeof(MainPage));
+                    
+
+                }
+            }
 
 
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Header_click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
