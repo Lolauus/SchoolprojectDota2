@@ -44,11 +44,11 @@ namespace SchoolProject
             Dota2DataProvider qdp = new Dota2DataProvider();
    
            
-            if (ValueFromButtonClick.Length < 10)
+            if (ValueFromButtonClick.Count() < 10 && ValueFromButtonClick != "")
             {
-                
-                var hej =  await qdp.GetPlayerInfo(ValueFromButtonClick);
-                Frame.Navigate(typeof(View.PlayerPage), hej);                
+
+                var input = await qdp.GetPlayerInfo(ValueFromButtonClick);
+                Frame.Navigate(typeof(PlayerPage), input);                
             }
             else
             {
