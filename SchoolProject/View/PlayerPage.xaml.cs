@@ -1,19 +1,9 @@
 ﻿using SchoolProject.DataProvider;
 using SchoolProject.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -24,29 +14,40 @@ namespace SchoolProject.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    
+
     public sealed partial class PlayerPage : Page
     {
+        public ObservableCollection<Profile> items;
+
         public PlayerPage()
         {
             InitializeComponent();
             APIHelper.InitilizeClient();
+            items = new ObservableCollection<Profile>();
+
 
         }
-            protected override void OnNavigatedTo(NavigationEventArgs e)
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
             {
 
                 Rootobject rootobject = (Rootobject)e.Parameter;
                 if (rootobject != null)
                 {
-                    Image img = new Image();
-                    img.Source = new BitmapImage(new Uri(rootobject.profile.avatarmedium));
-                    PlayerUserName.Text = rootobject.profile.personaname;
-                    PlayerSteamId.Text = ($"Steam Profile: {rootobject.profile.profileurl}");
-                    PlayerAccountId.Text = ($"Your Account ID: {rootobject.profile.account_id}");
-                    PlayerRank.Text = ($"Team MMR: {rootobject.competitive_rank}\n") + ($" Solo MMR: {rootobject.solo_competitive_rank}");
-                    PlayerMatchesPlayed.Text =   ($"Estimated Rating: {rootobject.mmr_estimate.estimate.ToString()}");
-                    PlayerAvatar.Source = img.Source;
+
+                    Profile profile = new Profile();
+
+                    profile.avatarmedium = rootobject.profile.avatarmedium;
+                    profile.personaname = rootobject.profile.personaname;
+                    profile.steamid = rootobject.profile.profileurl;
+                    profile.account_id = rootobject.profile.account_id;
+                    profile.loccountrycode = rootobject.competitive_rank.ToString();
+                    profile.mmr = rootobject.solo_competitive_rank;
+                    profile.last_login = rootobject.profile.last_login;
+
+
+                    items.Add(profile);
+                 PlayerInfo.ItemsSource = items;
                 }
                 else
                 {

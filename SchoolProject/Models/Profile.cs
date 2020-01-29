@@ -20,5 +20,6 @@ namespace SchoolProject.Models
         public DateTime last_login { get; set; }
         public string loccountrycode { get; set; }
         public bool is_contributor { get; set; }
+        public string mmr { get; set; }
     }
 }
