@@ -1,0 +1,64 @@
+﻿<UserControl
+    x:Class="SchoolProject.Elements.MatchInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SchoolProject.Elements"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <local:Shadows>
+        <local:Shadows.AdditionalContent>
+            <Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="700" Height="500" >
+                    <StackPanel>
+                        <TextBlock x:Name="PlayerUserName"
+                           FontSize="30"
+                           HorizontalAlignment="Center"
+                           Text="{Binding personaname}"/>
+                        <StackPanel HorizontalAlignment="Center"  Orientation="Horizontal" Margin="0 0 0 5">
+                            <TextBlock Text="Match ID:" Margin=" 0 0 5 0"/>
+                            <TextBlock x:Name="MatchID"
+                               FontSize="15"
+                               HorizontalAlignment="Center"
+                               Text="{Binding match_id}">
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 5">
+                            <TextBlock Text="First Blood min:" 
+                                       Margin=" 0 0 5 0"/>
+                            <TextBlock
+                               FontSize="15"
+                               HorizontalAlignment="Center"
+                               Text="{Binding first_blood_time}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 5">
+                            <TextBlock Text="Duration:" Margin="0 0 5 0" />
+                            <TextBlock
+                           FontSize="15"
+                           HorizontalAlignment="Center"
+                           Text="{Binding duration}"/>
+                            <TextBlock Text=" Min"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 5">
+                            <TextBlock Text="Radiant Kills:" Margin="0 0 5 0"/>
+                            <TextBlock
+                           FontSize="15"
+                           HorizontalAlignment="Center"
+                           Text="{Binding radiant_score}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 5">
+                            <TextBlock Text="Dire Kills:" Margin="0 0 5 0 "/>
+                            <TextBlock
+                           FontSize="15"
+                           HorizontalAlignment="Center"
+                           Text="{Binding dire_score}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            </local:Shadows.AdditionalContent>
+        </local:Shadows>
+</UserControl>

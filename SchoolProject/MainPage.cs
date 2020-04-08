@@ -28,6 +28,7 @@ namespace SchoolProject
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        
         public MainPage()
         {
             InitializeComponent();
@@ -41,28 +42,38 @@ namespace SchoolProject
         private async void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             var ValueFromButtonClick = SearchBar.Text;
-            Dota2DataProvider qdp = new Dota2DataProvider();
-   
-           
-            if (ValueFromButtonClick.Count() < 10 && ValueFromButtonClick != "")
-            {
 
-                var input = await qdp.GetPlayerInfo(ValueFromButtonClick);
-                Frame.Navigate(typeof(PlayerPage), input);                
+
+            if (ValueFromButtonClick.Length < 10 && ValueFromButtonClick.Length >= 8  )
+            {
+                if (await Session.PlayerInfo(ValueFromButtonClick))
+                {
+                    Frame.Navigate(typeof(PlayerPage),Session.EmployeeData);                
+                }
+
+            }
+
+            if (ValueFromButtonClick.Length == 10)
+            {
+                if (await Session.MatchInfo(ValueFromButtonClick))
+                {
+
+                    Frame.Navigate(typeof(MatchPage),Session.Matchinfon);
+                }
+
             }
             else
             {
                 string text = "You need to read the information regarding how to properly enter your ID";
                 ShowInfo.Text = text;
-
+                TextInfo.Text = "";
             }
             
         }
 
         private void Header_click(object sender, RoutedEventArgs e)
         {
-
-            this.Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(MainPage));
         }
 
         private void EnterClick(object sender, KeyRoutedEventArgs e)

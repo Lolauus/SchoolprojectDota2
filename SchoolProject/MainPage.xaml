@@ -5,93 +5,76 @@
     xmlns:local="using:SchoolProject"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="using:SchoolProject.View"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:views="using:SchoolProject.View" xmlns:local1="using:SchoolProject.Elements"
+    mc:Ignorable="d">
 
-    <Grid Background="Black">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Background="Black">
-
-            <Image x:Name="headerImage"
-                   Source="https://steemitimages.com/0x0/http://7wallpapers.net/wp-content/uploads/2_Dota2-Rubick.jpg"
-                   Stretch="Fill"/>
-
+    <Grid Background="#64CEE8">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+            
             <Button Content="Dota2 Tracker"
-                   Foreground="Red"
-                    FontSize="40"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Click="Header_click"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    BorderThickness="0"
-                    Padding="-4"
-                    AllowFocusOnInteraction="False"/>
-
-
+                       Foreground="Red"
+                        FontSize="40"
+                        Click="Header_click"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Padding="-4"
+                        AllowFocusOnInteraction="False"/>
             <TextBlock Text="Get information about players" FontSize="10"
                        Foreground="White"
                        VerticalAlignment="Center"
                        TextAlignment="Center"
                        Margin="0 60 0 0"/>
+
         </Grid>
-        <Grid Grid.Row="1">
-            <Image x:Name="picture"
-                    Source="https://cdn.estnn.com/wp-content/uploads/2019/09/02160537/dota-2-header-1024x576.jpg"
-                    Stretch="Fill"
-                    Height="700"/>
-        </Grid>
+        <Image Source="Images/trolololol.jpg" Height="300" Margin="0 0 0 350"/>
+        
+        <local1:Shadows VerticalAlignment="Center" HorizontalAlignment="Center">
+            <local1:Shadows.AdditionalContent >
+                <StackPanel>
 
-        <RelativePanel Grid.Row="1"
-                       HorizontalAlignment="Center">
 
-            <Grid x:Name="SearchBarGrid" Grid.Row="1"
-                  Background="DarkCyan"
-                  Width="400"
-                  Height="40"
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center"
-                 >
+                    <RelativePanel>
+                        <Grid x:Name="SearchBarGrid">
 
-                <TextBox x:Name="SearchBar"
+                            <TextBox x:Name="SearchBar"
                        FontSize="15"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Top"
-                       Foreground="White"
+                       Background="#F2F5F5"
+                       Foreground="Black"
                        Text="Search for players here"
                        Width="400"
                        Height="40"
                        GotFocus="FocusEvent"
                        KeyDown="EnterClick"/>
-            </Grid>
-            <Button x:Name="SearchBtn"
+                        </Grid>
+                        <Button x:Name="SearchBtn"
                     RelativePanel.RightOf="SearchBarGrid"
                     FontSize="30"
-                    Background="Green"
-                    Click="SearchBtn_Click"
-                    >
+                    Background="#043B54"
+                    Click="SearchBtn_Click" >
 
-                <FontIcon FontFamily="Segoe MDL2 Assets"
+                            <FontIcon FontFamily="Segoe MDL2 Assets"
                           Glyph="&#xE71E;"
                           FontSize="27"/>
-            </Button>
-        </RelativePanel>
-        <TextBlock x:Name="TextInfo" Grid.Row="1"
-                   Text="To search, please enter your player ID. We only allow 32bits id:s. To find your 32bit string, please visit https://steamid.xyz/ and enter your 64 bit string "
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Center"
-                   Margin=" 0 50 0 0"/>
-        <TextBlock Grid.Row="1" x:Name="ShowInfo"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="20"/>
+                        </Button>
+                    </RelativePanel>
+                </StackPanel>
+            </local1:Shadows.AdditionalContent>
+        </local1:Shadows>
+        
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="TextInfo"
+                       Text="Please enter your player ID. We only allow 32bits id:s. To find yours please visit https://steamid.xyz/ and enter your 64 bit ID-string. "
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin=" 0 100 0 0"
+                       Foreground="#FF576A"/>
+            <TextBlock x:Name="ShowInfo"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                       FontSize="20"
+                       Foreground="#FF576A"
+                       FontWeight="SemiBold"/>
+
+        </StackPanel>
     </Grid>
 </Page>

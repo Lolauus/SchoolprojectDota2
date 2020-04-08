@@ -1,20 +1,20 @@
 ﻿<Page
-     x:Class="SchoolProject.View.PlayerPage"
+    x:Class="SchoolProject.View.MatchPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SchoolProject.DataProvider"
-    xmlns:profile="using:SchoolProject.Models"
+    xmlns:local="using:SchoolProject.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:Elements="using:SchoolProject.Elements"
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0" >
 
             <Image x:Name="headerImage"
@@ -24,18 +24,13 @@
             <Button Content="Dota2 Tracker"
                    Foreground="Red"
                     FontSize="40"
+                    Click="Header_click"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Click="Header_click"
                     Background="Transparent"
                     BorderBrush="Transparent"
                     BorderThickness="0"
                     Padding="-4"/>
-
-            <RelativePanel
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Right">
-            </RelativePanel>
 
             <TextBlock Text="Get information about players" FontSize="10"
                        Foreground="White"
@@ -44,7 +39,7 @@
                        Margin="0 60 0 0"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Elements:PlayerCard/>
+            <Elements:MatchInfo/>
         </Grid>
     </Grid>
 </Page>

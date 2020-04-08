@@ -10,10 +10,11 @@ namespace SchoolProject.DataProvider
 {
     class Dota2DataProvider
     {
-        public async Task<Rootobject> GetPlayerInfo(string playerId)
+
+        public async Task<Rootobject> GetPlayerInfo(string stringInfo)
         {
-            string URL = ($"https://api.opendota.com/api/players/{playerId}");
-            Rootobject rootobjects = new Rootobject();
+            string URL = ($"https://api.opendota.com/api/players/{stringInfo}");
+            Rootobject Profiles = new Rootobject();
             using (HttpResponseMessage response = await APIHelper.ApiClient.GetAsync(URL))
             {
                 if (response.IsSuccessStatusCode)
@@ -22,23 +23,34 @@ namespace SchoolProject.DataProvider
                     var result = response.Content.ReadAsStringAsync();
 
                         var data = JsonConvert.DeserializeObject<Rootobject>(result.Result);
-                        rootobjects = data;
+                             Profiles = data;
 
-                    if (rootobjects.solo_competitive_rank == null || rootobjects.competitive_rank == null)
-                    {
-                        rootobjects.solo_competitive_rank = "No Rank";
-                        rootobjects.competitive_rank = "No Rank";
-
-                    }
-
+                        if (Profiles.solo_competitive_rank == null || Profiles.competitive_rank == null)
+                        {
+                            Profiles.solo_competitive_rank = "No Rank";
+                            Profiles.competitive_rank = "No Rank";
+                        }
 
                 }
-
             }
-            return rootobjects;
-
+            return Profiles;
         }
+        public async Task<MatchInfo> GetMatchInfo(string stringInfo)
+        {
+            string URL = ($"https://api.opendota.com/api/matches/{stringInfo}");
+            MatchInfo matchinfo = new MatchInfo();
+            using (HttpResponseMessage response = await APIHelper.ApiClient.GetAsync(URL))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsStringAsync();
 
+                    var data = JsonConvert.DeserializeObject<MatchInfo>(result.Result);
+                    matchinfo = data;
+                }
+            }
+            return matchinfo;
+        }
     }
  }
 

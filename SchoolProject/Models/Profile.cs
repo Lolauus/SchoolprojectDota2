@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SchoolProject.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace SchoolProject.Models
         public string profileurl { get; set; }
         public DateTime last_login { get; set; }
         public string loccountrycode { get; set; }
-        public bool is_contributor { get; set; }
+
+
     }
 }
